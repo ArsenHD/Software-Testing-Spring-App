@@ -37,7 +37,7 @@ jobs:
 #            - v1-dependencies-
       - run: chmod +x gradlew
 
-      - run: ./gradlew dependencies
+      - run: ./gradlew build -x test
 
 #      - save_cache:
 #          paths:
