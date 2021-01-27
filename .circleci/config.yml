@@ -31,7 +31,7 @@ jobs:
 #            - ~/.gradle
 #          key: v1-dependencies-{{ checksum "build.gradle" }}
 
-  unit:
+  unit-tests:
     runs-on: ubuntu-latest
     docker:
       - image: cimg/openjdk:15.0.1
@@ -75,6 +75,6 @@ workflows:
   my-workflow:
     jobs:
       - build
-      - unit:
+      - unit-tests:
           requires:
-            -build
+            - build
