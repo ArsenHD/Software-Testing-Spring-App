@@ -87,6 +87,8 @@ jobs:
     steps:
       - checkout
 
+      - run: chmod +x gradlew
+
       - run: ./gradlew bootRun
 
       - run: sleep 10
