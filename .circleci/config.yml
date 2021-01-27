@@ -72,7 +72,6 @@ jobs:
 #        run: ./gradlew test --tests *.e2e.*
   workflows:
     version: 2
-    workflow:
-      jobs:
-        - build
-        - unit-tests
+    jobs:
+      - build
+      - unit-tests
