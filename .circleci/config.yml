@@ -75,4 +75,6 @@ workflows:
   my-workflow:
     jobs:
       - build
-        unit-tests
+      - unit-tests:
+          requires:
+            -build
