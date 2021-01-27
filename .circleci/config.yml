@@ -5,6 +5,7 @@
 version: 2
 jobs:
   build:
+    runs-on: ubuntu-latest
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:11.0.3-jdk-stretch
