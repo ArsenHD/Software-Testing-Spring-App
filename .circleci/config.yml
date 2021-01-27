@@ -47,6 +47,8 @@ jobs:
     steps:
       - checkout
 
+      - run: chmod +x gradlew
+
       - run: ./gradlew test --tests *.unit.*
 
 #  e2e-tests:
