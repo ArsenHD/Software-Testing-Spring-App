@@ -33,8 +33,8 @@ jobs:
 
   unit-tests:
     runs-on: ubuntu-latest
-#    docker:
-#      - image: cimg/openjdk:15.0.1
+    docker:
+      - image: cimg/openjdk:15.0.1
 #
 #      - image: circleci/postgres:9.4
 #        environment:
