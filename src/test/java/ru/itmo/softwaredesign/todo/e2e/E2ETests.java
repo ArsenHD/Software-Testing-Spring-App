@@ -1,14 +1,26 @@
 package ru.itmo.softwaredesign.todo.e2e;
 
 import com.codeborne.selenide.*;
+import org.junit.ClassRule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.util.TestPropertyValues;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@ContextConfiguration(initializers = E2ETests.Initializer.class)
 public class E2ETests {
     @BeforeEach
     void beforeEach() {
@@ -100,5 +112,23 @@ public class E2ETests {
         open("/to-do-lists/new-list");
         // check that the new list contains 5 tasks
         $$(By.cssSelector("li")).shouldHaveSize(5);
+    }
+
+    @ClassRule
+    public static PostgreSQLContainer<?> postgreSQLContainer =
+            new PostgreSQLContainer<>("circleci/postgres:9.4")
+                    .withDatabaseName("test-db")
+                    .withUsername("an")
+                    .withPassword("an");
+
+    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+        @Override
+        public void initialize(ConfigurableApplicationContext applicationContext) {
+            TestPropertyValues.of(
+                    "spring.datasource.url=" + postgreSQLContainer.getJdbcUrl(),
+                    "spring.datasource.username=" + postgreSQLContainer.getUsername(),
+                    "spring.datasource.password=" + postgreSQLContainer.getPassword()
+            ).applyTo(applicationContext.getEnvironment());
+        }
     }
 }
