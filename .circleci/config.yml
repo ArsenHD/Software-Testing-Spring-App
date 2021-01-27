@@ -70,9 +70,9 @@ jobs:
 #
 #      - name: Run e2e tests
 #        run: ./gradlew test --tests *.e2e.*
-  workflows:
-    version: 2
-    my-workflow:
-      jobs:
-        - build
-        - unit-tests
+workflows:
+  version: 2
+  my-workflow:
+    jobs:
+      - build
+      - unit-tests
