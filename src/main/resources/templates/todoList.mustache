@@ -1,0 +1,37 @@
+{{> header}}
+
+<a href="/">Home</a>
+
+<section class="list">
+    <header class="list-header">
+        <h1 class="list-title">{{todoList.title}}</h1>
+        <p>
+            Description:
+            <br>
+            {{todoList.description}}
+        </p>
+    </header>
+    <hr>
+    <div class="list-items">
+        <ul>
+            {{#todoList.items}}
+                <li>
+                    {{task}}
+                    <br>
+                    <b class="status">{{status}}</b>
+                    <form action="/mark-as-complete" method="post">
+                        <input type="hidden" name="id" value={{id}}>
+                        <button type="submit">Finish</button>
+                    </form>
+                </li>
+            {{/todoList.items}}
+        </ul>
+        <hr>
+        <form action="/to-do-lists/{{todoList.slug}}/add-item" method="post">
+            Add task: <input class="task-input" type="text" name="task" placeholder="enter your task">
+            <button class="add-task" type="submit">Add</button>
+        </form>
+    </div>
+</section>
+
+{{> footer}}

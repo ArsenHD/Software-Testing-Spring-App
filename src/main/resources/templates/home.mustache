@@ -1,0 +1,36 @@
+{{> header}}
+
+<h1>{{title}}</h1>
+
+<div class="lists">
+    {{#todoLists}}
+        <section>
+            <header class="list-header">
+                <h2 class="list-title">
+                    <a href="/to-do-lists/{{slug}}">{{title}}</a>
+                </h2>
+                <form action="/delete-list" method="post">
+                    <input type="hidden" name="slug" value={{slug}}>
+                    <button type="submit">Delete</button>
+                </form>
+            </header>
+        </section>
+    {{/todoLists}}
+    <hr>
+    <form action="/add-list" method="post">
+        <h3>Add a to-do list:</h3>
+        <b>Title</b>:
+        <label>
+            <input class="title-input" type="text" name="title" placeholder="enter the title">
+        </label>
+        <br>
+        <b>Description</b>:
+        <label>
+            <input class="description-input" type="text" name="description" placeholder="enter description">
+        </label>
+        <br>
+        <button class="add-list" type="submit">Add</button>
+    </form>
+</div>
+
+{{> footer}}
