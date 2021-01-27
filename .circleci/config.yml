@@ -47,8 +47,7 @@ jobs:
     steps:
       - checkout
 
-      - name: Run unit tests
-        run: ./gradlew test --tests *.unit.*
+      - run: ./gradlew test --tests *.unit.*
 
 #  e2e-tests:
 #    runs-on: ubuntu-latest
