@@ -26,10 +26,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(initializers = IntegrationTests.Initializer.class)
 public class IntegrationTests {
     @ClassRule
-    public static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:11.1")
-            .withDatabaseName("test-db")
-            .withUsername("an")
-            .withPassword("an");
+    public static PostgreSQLContainer<?> postgreSQLContainer =
+            new PostgreSQLContainer<>("circleci/postgres:9.4")
+                    .withDatabaseName("test-db")
+                    .withUsername("an")
+                    .withPassword("an");
 
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         @Override
