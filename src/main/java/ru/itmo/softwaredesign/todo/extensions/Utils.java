@@ -3,7 +3,7 @@ package ru.itmo.softwaredesign.todo.extensions;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class Extensions {
+public class Utils {
     public static String toSlug(String str) {
         return Arrays.stream(str.toLowerCase()
                 .replace("\n", " ")

@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 
-import static ru.itmo.softwaredesign.todo.extensions.Extensions.toSlug;
+import static ru.itmo.softwaredesign.todo.extensions.Utils.toSlug;
 
 @Entity
 @Table(name = "TodoLists")
