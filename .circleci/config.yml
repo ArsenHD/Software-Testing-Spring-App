@@ -74,4 +74,5 @@ workflows:
   version: 2
   my-workflow:
     jobs:
-      - build & unit-tests
+      - build
+        unit-tests
